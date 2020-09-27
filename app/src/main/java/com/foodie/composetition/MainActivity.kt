@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
+import com.foodie.composetition.ui.HomeView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,17 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TestComposable()
+            HomeView()
         }
     }
 }
-
-@Preview
-@Composable
-    fun TestComposable() {
-        Surface(color = Color.White) {
-            Text("Test")
-        }
-    }
-
 
