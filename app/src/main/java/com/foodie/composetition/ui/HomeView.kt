@@ -16,12 +16,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
+import com.foodie.composetition.ui.composables.MichelinStarRow
 import com.foodie.composetition.ui.composables.MichelinStarTotal
 
 @Composable
 fun HomeView() {
     MaterialTheme {
-        val typography = MaterialTheme.typography
         val context = ContextAmbient.current
 
         Surface(color = Color.White) {
@@ -30,7 +30,7 @@ fun HomeView() {
             ) {
                 Column(modifier = Modifier.weight(1f).fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally) {
-                    Spacer(Modifier.preferredHeight(60.dp))
+                    Spacer(Modifier.preferredHeight(16.dp))
                     Text("YOUR STAR-METER",
                             color = Color(android.graphics.Color.parseColor("#2D2926")),
                             fontWeight = FontWeight(400),
@@ -52,6 +52,7 @@ fun HomeView() {
                             fontSize = TextUnit.Companion.Sp(16),
                             fontFamily = FontFamily.Default
                     )
+                    Spacer(Modifier.preferredHeight(48.dp))
                     MichelinStarTotal()
                 }
 
@@ -61,6 +62,10 @@ fun HomeView() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    MichelinStarRow(stars = 1, totalCount = 5, Modifier.padding(16.dp))
+                    MichelinStarRow(stars = 2, totalCount = 8, Modifier.padding(horizontal = 16.dp))
+                    MichelinStarRow(stars = 3, totalCount = 7, Modifier.padding(16.dp))
+
                     Button(backgroundColor = Color(android.graphics.Color.parseColor("#DC3545")),
                             contentColor = Color.White,
                             modifier = Modifier.fillMaxWidth().preferredHeight(60.dp),
