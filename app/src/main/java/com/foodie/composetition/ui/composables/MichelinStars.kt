@@ -3,6 +3,7 @@ package com.foodie.composetition.ui.composables
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Surface
@@ -24,11 +25,15 @@ fun MichelinStars(count: Int) {
     var stars = maxOf(minOf(count, 3), 0)
     Row() {
         while (stars > 0) {
-            Surface(modifier = Modifier.padding(end = 16.dp)) {
-                Image(asset = imageResource(R.drawable.star),
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.width(33.dp))
+            
+            Image(asset = imageResource(R.drawable.star),
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.width(33.dp))
+
+            if (stars != 1) {
+                Spacer(modifier = Modifier.width(16.dp))
             }
+
             stars--
         }
     }
@@ -37,6 +42,6 @@ fun MichelinStars(count: Int) {
 @Preview
 @Composable
 fun MichelinStarsPreview() {
-    MichelinStars(3)
+    MichelinStars(1)
 }
 
