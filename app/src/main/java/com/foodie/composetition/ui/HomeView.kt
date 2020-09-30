@@ -35,7 +35,7 @@ fun HomeView() {
                     Text(
                         "YOUR STAR-METER",
                         color = Color(android.graphics.Color.parseColor("#2D2926")),
-                        style = MaterialTheme.typography.h6
+                        style = MaterialTheme.typography.caption
                     )
                     Spacer(Modifier.preferredHeight(16.dp))
                     Text(

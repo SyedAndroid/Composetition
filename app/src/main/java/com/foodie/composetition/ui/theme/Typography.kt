@@ -29,6 +29,11 @@ val Typo = Typography(
     h6 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W400,
+        fontSize = 18.sp
+    ),
+    caption = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.W400,
         fontSize = 14.sp
     ),
     body1 = TextStyle(

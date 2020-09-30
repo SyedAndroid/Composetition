@@ -22,3 +22,7 @@ fun Theme(
 @Composable
 val Colors.textColor: Color
     get() = if (isLight) BlackLight else Color.White
+
+@Composable
+val Colors.titleTextColor: Color
+    get() = if (isLight) Color.Black else Color.White

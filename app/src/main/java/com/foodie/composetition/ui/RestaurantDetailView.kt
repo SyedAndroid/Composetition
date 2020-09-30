@@ -20,10 +20,13 @@ import com.foodie.composetition.ui.composables.CircularImage
 import com.foodie.composetition.ui.composables.MichelinStarRow
 import com.foodie.composetition.ui.composables.MichelinStars
 import com.foodie.composetition.ui.composables.RestaurantVisits
+import com.foodie.composetition.ui.theme.Theme
+import com.foodie.composetition.ui.theme.textColor
+import com.foodie.composetition.ui.theme.titleTextColor
 
 @Composable
 fun RestaurantDetailView() {
-    MaterialTheme {
+    Theme() {
         val context = ContextAmbient.current
 
         Surface(color = Color.White) {
@@ -36,35 +39,34 @@ fun RestaurantDetailView() {
                 ) {
                     CircularImage()
                     Spacer(modifier = Modifier.preferredHeight(40.dp))
+
                     MichelinStars(count = 2)
                     Spacer(modifier = Modifier.preferredHeight(24.dp))
+
                     Text(
                         text = "Arzak",
-                        color = Color(android.graphics.Color.parseColor("#2D2926")),
-                        fontWeight = FontWeight(600),
-                        fontSize = TextUnit.Companion.Sp(20),
-                        fontFamily = FontFamily.Serif
+                        color = MaterialTheme.colors.titleTextColor,
+                        style = MaterialTheme.typography.h4
                     )
                     Spacer(modifier = Modifier.preferredHeight(10.dp))
+
                     Text(
                         text = "Humlegårdsgatan 17",
-                        color = Color(android.graphics.Color.parseColor("#2D2926")),
-                        fontWeight = FontWeight(400),
-                        fontSize = TextUnit.Companion.Sp(16),
-                        fontFamily = FontFamily.Default
+                        color = MaterialTheme.colors.textColor,
+                        style = MaterialTheme.typography.body2
                     )
                     Text(
                         text = "Stockholm, Sweden",
-                        color = Color(android.graphics.Color.parseColor("#2D2926")),
-                        fontWeight = FontWeight(400),
-                        fontSize = TextUnit.Companion.Sp(16),
-                        fontFamily = FontFamily.Default
+                        color = MaterialTheme.colors.textColor,
+                        style = MaterialTheme.typography.body2
                     )
                     Spacer(modifier = Modifier.preferredHeight(10.dp))
+
                     RestaurantVisits(count = 19)
                     Spacer(modifier = Modifier.preferredHeight(10.dp))
-                    Button(backgroundColor = Color(android.graphics.Color.parseColor("#FFFFFF")),
-                        contentColor = Color(android.graphics.Color.parseColor("#A42330")),
+
+                    Button(backgroundColor = MaterialTheme.colors.secondary,
+                        contentColor = MaterialTheme.colors.onSecondary,
                         modifier = Modifier.fillMaxWidth().preferredHeight(60.dp),
                         onClick = {
                             Toast.makeText(context, "You just pushed a button", Toast.LENGTH_SHORT)
@@ -72,11 +74,8 @@ fun RestaurantDetailView() {
                         }) {
                         Text(
                             "Request update",
-                            fontWeight = FontWeight(500),
-                            fontSize = TextUnit.Sp(20),
-                            fontFamily = FontFamily.Default
+                            style = MaterialTheme.typography.button
                         )
-
                     }
                 }
 
@@ -85,8 +84,8 @@ fun RestaurantDetailView() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    Button(backgroundColor = Color(android.graphics.Color.parseColor("#DC3545")),
-                        contentColor = Color.White,
+                    Button(backgroundColor = MaterialTheme.colors.primary,
+                        contentColor = MaterialTheme.colors.onPrimary,
                         modifier = Modifier.fillMaxWidth().preferredHeight(60.dp),
                         onClick = {
                             Toast.makeText(context, "You just pushed a button", Toast.LENGTH_SHORT)
@@ -94,9 +93,7 @@ fun RestaurantDetailView() {
                         }) {
                         Text(
                             "Explore restaurants",
-                            fontWeight = FontWeight(400),
-                            fontSize = TextUnit.Companion.Sp(20),
-                            fontFamily = FontFamily.Default
+                            style = MaterialTheme.typography.button
                         )
                     }
                 }
