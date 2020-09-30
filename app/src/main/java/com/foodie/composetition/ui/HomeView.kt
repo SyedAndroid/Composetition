@@ -18,12 +18,13 @@ import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.foodie.composetition.ui.composables.MichelinStarRow
 import com.foodie.composetition.ui.composables.MichelinStarTotal
+import com.foodie.composetition.ui.theme.Theme
+import com.foodie.composetition.ui.theme.textColor
 
 @Composable
 fun HomeView() {
-    MaterialTheme {
-        val context = ContextAmbient.current
-
+    val context = ContextAmbient.current
+    Theme() {
         Surface(color = Color.White) {
             Column(
                     modifier = Modifier.padding(16.dp).fillMaxHeight()
@@ -31,26 +32,21 @@ fun HomeView() {
                 Column(modifier = Modifier.weight(1f).fillMaxWidth(),
                         horizontalAlignment = Alignment.CenterHorizontally) {
                     Spacer(Modifier.preferredHeight(16.dp))
-                    Text("YOUR STAR-METER",
-                            color = Color(android.graphics.Color.parseColor("#2D2926")),
-                            fontWeight = FontWeight(400),
-                            fontSize = TextUnit.Companion.Sp(14),
-                            fontFamily = FontFamily.Default
+                    Text(
+                        "YOUR STAR-METER",
+                        color = Color(android.graphics.Color.parseColor("#2D2926")),
+                        style = MaterialTheme.typography.h6
                     )
                     Spacer(Modifier.preferredHeight(16.dp))
                     Text(
                         "You have visited 11 Michelin star restaurants.",
                             color = Color(android.graphics.Color.parseColor("#2D2926")),
-                            fontWeight = FontWeight(700),
-                            fontSize = TextUnit.Companion.Sp(16),
-                            fontFamily = FontFamily.Default
+                            style = MaterialTheme.typography.body2
                     )
                     Text(
                             "Adding up to 20 Michelin stars in total.",
-                            color = Color(android.graphics.Color.parseColor("#2D2926")),
-                            fontWeight = FontWeight(700),
-                            fontSize = TextUnit.Companion.Sp(16),
-                            fontFamily = FontFamily.Default
+                            color = MaterialTheme.colors.textColor,
+                            style = MaterialTheme.typography.body2
                     )
                     Spacer(Modifier.preferredHeight(48.dp))
                     MichelinStarTotal()
@@ -66,17 +62,15 @@ fun HomeView() {
                     MichelinStarRow(stars = 2, totalCount = 8, Modifier.padding(horizontal = 16.dp))
                     MichelinStarRow(stars = 3, totalCount = 7, Modifier.padding(16.dp))
 
-                    Button(backgroundColor = Color(android.graphics.Color.parseColor("#DC3545")),
-                            contentColor = Color.White,
+                    Button(backgroundColor = MaterialTheme.colors.primary,
+                            contentColor =  MaterialTheme.colors.onPrimary,
                             modifier = Modifier.fillMaxWidth().preferredHeight(60.dp),
                             onClick = {
                         Toast.makeText(context, "You just pushed a button", Toast.LENGTH_SHORT)
                             .show()
                     }){
                         Text("Explore restaurants",
-                                fontWeight = FontWeight(400),
-                                fontSize = TextUnit.Companion.Sp(20),
-                                fontFamily = FontFamily.Default)
+                            style = MaterialTheme.typography.button)
                     }
                 }
             }
@@ -89,4 +83,3 @@ fun HomeView() {
 fun HomeViewPreview() {
     HomeView()
 }
-
