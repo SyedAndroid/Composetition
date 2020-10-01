@@ -9,10 +9,13 @@ import androidx.room.Query
 @Dao
 interface RestaurantDao {
 
-    @Query("SELECT * from restaurant_table")
+    @Query("SELECT * from restaurant_table ")
     fun getRestaurants(): LiveData<List<Restaurant>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("SELECT * from restaurant_table")
+    fun getRestaurantsAsList(): List<Restaurant>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(restaurant: List<Restaurant>)
 
     @Query("DELETE FROM restaurant_table")

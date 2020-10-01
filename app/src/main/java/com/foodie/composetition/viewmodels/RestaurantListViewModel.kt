@@ -8,6 +8,6 @@ class RestaurantListViewModel @ViewModelInject constructor(
     private val repository: RestaurantRepository
 ) : ViewModel() {
 
-    val restaurantResponse = repository.getRestaurants()
+    var restaurantResponse = repository.getRestaurants()
 
 }

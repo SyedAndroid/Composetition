@@ -65,6 +65,7 @@ object AppModule {
         return HttpLoggingInterceptor().setLevel(logLevel)
     }
 
+    @Singleton
     @Provides
     fun provideGson(): Gson {
         return GsonBuilder().setLenient().create()
