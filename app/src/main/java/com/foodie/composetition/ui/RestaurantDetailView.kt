@@ -7,12 +7,13 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.ui.tooling.preview.Preview
 import com.foodie.composetition.repository.Restaurant
 import com.foodie.composetition.ui.composables.CircularImage
@@ -21,12 +22,15 @@ import com.foodie.composetition.ui.composables.RestaurantVisits
 import com.foodie.composetition.ui.theme.Theme
 import com.foodie.composetition.ui.theme.textColor
 import com.foodie.composetition.ui.theme.titleTextColor
+import com.foodie.composetition.viewmodels.RestaurantListViewModel
 
 @Composable
-fun RestaurantDetailView(viewModel : ViewModel, visitClicked : () -> Unit) {
-    Theme() {
-        val context = ContextAmbient.current
+fun RestaurantDetailView(viewModel : RestaurantListViewModel, visitClicked : () -> Unit) {
 
+        val details : Restaurant? by viewModel.restaurantDetails.observeAsState()
+
+        val context = ContextAmbient.current
+        details?.let {
         Surface(color = Color.White) {
             Column(
                 modifier = Modifier.fillMaxHeight().fillMaxWidth()
@@ -38,23 +42,23 @@ fun RestaurantDetailView(viewModel : ViewModel, visitClicked : () -> Unit) {
                     CircularImage()
                     Spacer(modifier = Modifier.preferredHeight(40.dp))
 
-                    MichelinStars(count = 2)
+                    MichelinStars(count = it.michelinRating)
                     Spacer(modifier = Modifier.preferredHeight(24.dp))
 
                     Text(
-                        text = "Arzak",
+                        text = it.name,
                         color = MaterialTheme.colors.titleTextColor,
                         style = MaterialTheme.typography.h4
                     )
                     Spacer(modifier = Modifier.preferredHeight(10.dp))
 
                     Text(
-                        text = "Humlegårdsgatan 17",
+                        text = it.address,
                         color = MaterialTheme.colors.textColor,
                         style = MaterialTheme.typography.body2
                     )
                     Text(
-                        text = "Stockholm, Sweden",
+                        text = it.city,
                         color = MaterialTheme.colors.textColor,
                         style = MaterialTheme.typography.body2
                     )
@@ -98,6 +102,7 @@ fun RestaurantDetailView(viewModel : ViewModel, visitClicked : () -> Unit) {
             }
         }
     }
+
 }
 
 @Preview

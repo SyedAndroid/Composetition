@@ -17,6 +17,8 @@ class RestaurantRepository @Inject constructor(
         saveCallResult = { restaurantDao.insertAll(toRestaurant(it)) }
     )
 
+    fun getRestaurant(id : Long) = restaurantDao.getRestaurant(id)
+
     private fun toRestaurant(restaurantResponse: RestaurantResponse): List<Restaurant> {
         val restaurants = ArrayList<Restaurant>()
         restaurantResponse.poiList.forEach {

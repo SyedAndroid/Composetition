@@ -15,6 +15,9 @@ interface RestaurantDao {
     @Query("SELECT * from restaurant_table")
     fun getRestaurantsAsList(): List<Restaurant>
 
+    @Query("SELECT * FROM restaurant_table WHERE id = :id_")
+    fun getRestaurant(id_: Long): LiveData<Restaurant>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(restaurant: List<Restaurant>)
 

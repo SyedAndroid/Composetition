@@ -62,7 +62,7 @@ fun loadList(restaurants: List<Restaurant>, selectRestaurant: (Long) -> Unit) {
 
 @Composable
 fun restaurantItem(restaurant: Restaurant, selectRestaurant: (Long) -> Unit ) {
-    Row(modifier = Modifier.padding(8.dp).clickable(onClick = { selectRestaurant(restaurant.id) })) {
+    Row(modifier = Modifier.padding(8.dp).fillMaxWidth().clickable(onClick = { selectRestaurant(restaurant.id) })) {
         CoilImage(
             request = ImageRequest.Builder(ContextAmbient.current)
                 .data(restaurant.imageLink)

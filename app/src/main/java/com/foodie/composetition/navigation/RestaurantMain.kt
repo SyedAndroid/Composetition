@@ -48,10 +48,15 @@ fun RestaurantMain(viewModel: RestaurantListViewModel, backDispatcher: OnBackPre
                                                        viewModel = viewModel,
                                 selectRestaurant = actions.selectOnRestaurant)
 
-        //  Destination.RestaurantDetail -> RestaurantDetailView(viewModel = viewModel, visitClicked = actions.visitRestaurant)
+          is Destination.RestaurantDetail -> {
+            viewModel.getRestaurant(destination.restaurantId)
+            RestaurantDetailView(viewModel = viewModel,
+              visitClicked = actions.visitRestaurant)
+            }
+          }
           }
         }
       }
     }
-  }
+
 
