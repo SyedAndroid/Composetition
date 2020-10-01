@@ -11,13 +11,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.ui.tooling.preview.Preview
+import com.foodie.composetition.repository.Restaurant
 import com.foodie.composetition.ui.composables.CircularImage
-import com.foodie.composetition.ui.composables.MichelinStarRow
 import com.foodie.composetition.ui.composables.MichelinStars
 import com.foodie.composetition.ui.composables.RestaurantVisits
 import com.foodie.composetition.ui.theme.Theme
@@ -25,7 +23,7 @@ import com.foodie.composetition.ui.theme.textColor
 import com.foodie.composetition.ui.theme.titleTextColor
 
 @Composable
-fun RestaurantDetailView() {
+fun RestaurantDetailView(viewModel : ViewModel, visitClicked : () -> Unit) {
     Theme() {
         val context = ContextAmbient.current
 
@@ -105,5 +103,5 @@ fun RestaurantDetailView() {
 @Preview
 @Composable
 fun RestaurantDetailViewPreview() {
-    RestaurantDetailView()
+    //RestaurantDetailView()
 }

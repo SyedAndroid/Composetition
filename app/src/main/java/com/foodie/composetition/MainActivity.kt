@@ -1,5 +1,6 @@
 package com.foodie.composetition
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setContent {
-            HomeView()
+            RestaurantMain(viewModel, onBackPressedDispatcher)
         }
     }
 }
