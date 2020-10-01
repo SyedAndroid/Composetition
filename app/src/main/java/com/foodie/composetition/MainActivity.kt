@@ -11,6 +11,7 @@ import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
 import com.foodie.composetition.navigation.RestaurantMain
 import com.foodie.composetition.viewmodels.RestaurantListViewModel
+import com.foodie.composetition.ui.HomeView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,20 +24,7 @@ class MainActivity : AppCompatActivity() {
         val viewModel: RestaurantListViewModel by viewModels()
 
         setContent {
-            RestaurantMain(
-                viewModel = viewModel,
-                backDispatcher = onBackPressedDispatcher
-            )
+            HomeView()
         }
     }
 }
-
-@Preview
-@Composable
-fun TestComposable() {
-    Surface(color = Color.White) {
-        Text("Test")
-    }
-}
-
-
