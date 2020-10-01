@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel: RestaurantListViewModel by viewModels()
 
+        supportActionBar?.hide()
+
         setContent {
             HomeView()
         }

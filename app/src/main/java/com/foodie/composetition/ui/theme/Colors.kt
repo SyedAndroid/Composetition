@@ -13,13 +13,16 @@ val BlackLight = Color(parseColor("#2D2926"))
 
 val LightThemeColors = lightColors(
     primary = RedLight,
+    primaryVariant = RedDark,
     onPrimary = Color.White,
     secondary = Color.White,
+    secondaryVariant = RedLight,
     onSecondary = RedDark
 )
 
 val DarkThemeColors = darkColors(
     primary = RedDark,
+    primaryVariant = RedLight,
     onPrimary = Color.Black,
     secondary = Color.Black,
     onSecondary = RedLight
