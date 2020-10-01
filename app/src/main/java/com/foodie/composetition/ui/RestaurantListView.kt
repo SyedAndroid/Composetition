@@ -28,7 +28,8 @@ fun RestaurantListView(
     selectRestaurant: (Long) -> Unit
 ) {
     val restaurantsResource: Resource<List<Restaurant>> by viewModel.restaurantResponse.observeAsState(
-        Resource(Resource.Status.LOADING, null, null))
+        Resource(Resource.Status.LOADING, null, null)
+    )
     Surface(
         modifier = Modifier.fillMaxHeight().fillMaxWidth(),
         color = Color.White,
@@ -52,17 +53,20 @@ fun RestaurantListView(
 @Composable
 fun loadList(restaurants: List<Restaurant>, selectRestaurant: (Long) -> Unit) {
 
-        LazyColumnFor(restaurants, modifier = Modifier.padding(16.dp)) {
-            restaurants.forEach { restaurant ->
-                restaurantItem(restaurant, selectRestaurant)
-            }
+    LazyColumnFor(restaurants, modifier = Modifier.padding(16.dp)) {
+        restaurants.forEach { restaurant ->
+            restaurantItem(restaurant, selectRestaurant)
         }
+    }
 }
 
 
 @Composable
-fun restaurantItem(restaurant: Restaurant, selectRestaurant: (Long) -> Unit ) {
-    Row(modifier = Modifier.padding(8.dp).fillMaxWidth().clickable(onClick = { selectRestaurant(restaurant.id) })) {
+fun restaurantItem(restaurant: Restaurant, selectRestaurant: (Long) -> Unit) {
+    Row(
+        modifier = Modifier.padding(8.dp).fillMaxWidth()
+            .clickable(onClick = { selectRestaurant(restaurant.id) })
+    ) {
         CoilImage(
             request = ImageRequest.Builder(ContextAmbient.current)
                 .data(restaurant.imageLink)

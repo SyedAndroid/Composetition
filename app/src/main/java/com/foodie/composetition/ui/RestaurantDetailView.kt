@@ -24,18 +24,17 @@ import com.foodie.composetition.repository.Restaurant
 import com.foodie.composetition.ui.composables.CircularImage
 import com.foodie.composetition.ui.composables.MichelinStars
 import com.foodie.composetition.ui.composables.RestaurantVisits
-import com.foodie.composetition.ui.theme.Theme
 import com.foodie.composetition.ui.theme.textColor
 import com.foodie.composetition.ui.theme.titleTextColor
 import com.foodie.composetition.viewmodels.RestaurantListViewModel
 
 @Composable
-fun RestaurantDetailView(viewModel : RestaurantListViewModel, visitClicked : () -> Unit) {
+fun RestaurantDetailView(viewModel: RestaurantListViewModel, visitClicked: () -> Unit) {
 
-        val details : Restaurant? by viewModel.restaurantDetails.observeAsState()
+    val details: Restaurant? by viewModel.restaurantDetails.observeAsState()
 
-        val context = ContextAmbient.current
-        details?.let {
+    val context = ContextAmbient.current
+    details?.let {
         Surface(color = Color.White) {
             ScrollableColumn(
                 modifier = Modifier.fillMaxHeight().fillMaxWidth()
