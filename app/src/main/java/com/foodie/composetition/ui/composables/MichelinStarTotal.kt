@@ -20,10 +20,10 @@ import androidx.ui.tooling.preview.Preview
 
 
 @Composable
-fun MichelinStarTotal() {
+fun MichelinStarTotal(stars: Int) {
     Stack(alignment = Alignment.Center) {
         Text(
-            "20",
+            stars.toString(),
             fontWeight = FontWeight(300),
             fontSize = TextUnit.Companion.Sp(120),
             color = Color(android.graphics.Color.parseColor("#A42330")),
@@ -45,6 +45,6 @@ fun MichelinStarTotalPreview() {
     Surface(color = Color.White) {
 
     }
-    MichelinStarTotal()
+    //MichelinStarTotal()
 }
 

@@ -42,7 +42,10 @@ fun RestaurantMain(viewModel: RestaurantListViewModel, backDispatcher: OnBackPre
         ProvideDisplayInsets {
             Crossfade(navigator.current) { destination ->
                 when (destination) {
-                    Destination.Home -> HomeView(goToRestaurantList = actions.browseRestaurants)
+                    Destination.Home -> {
+                        viewModel.getRestaurantVisited()
+                        HomeView(viewModel, goToRestaurantList = actions.browseRestaurants)
+                    }
 
                     Destination.RestaurantList -> RestaurantListView(
                         viewModel = viewModel,
@@ -52,8 +55,7 @@ fun RestaurantMain(viewModel: RestaurantListViewModel, backDispatcher: OnBackPre
                     is Destination.RestaurantDetail -> {
                         viewModel.getRestaurant(destination.restaurantId)
                         RestaurantDetailView(
-                            viewModel = viewModel,
-                            visitClicked = actions.visitRestaurant
+                            viewModel = viewModel
                         )
                     }
                 }

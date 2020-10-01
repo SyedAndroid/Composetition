@@ -23,13 +23,12 @@ import com.foodie.composetition.R
 import com.foodie.composetition.repository.Restaurant
 import com.foodie.composetition.ui.composables.CircularImage
 import com.foodie.composetition.ui.composables.MichelinStars
-import com.foodie.composetition.ui.composables.RestaurantVisits
 import com.foodie.composetition.ui.theme.textColor
 import com.foodie.composetition.ui.theme.titleTextColor
 import com.foodie.composetition.viewmodels.RestaurantListViewModel
 
 @Composable
-fun RestaurantDetailView(viewModel: RestaurantListViewModel, visitClicked: () -> Unit) {
+fun RestaurantDetailView(viewModel: RestaurantListViewModel) {
 
     val details: Restaurant? by viewModel.restaurantDetails.observeAsState()
 
@@ -44,18 +43,20 @@ fun RestaurantDetailView(viewModel: RestaurantListViewModel, visitClicked: () ->
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Stack(alignment = Alignment.TopCenter) {
-                        Image(asset = imageResource(id = R.drawable.arzak_map),
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier.height(288.dp).fillMaxWidth())
+                        Image(
+                            asset = imageResource(id = R.drawable.arzak_map),
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.height(288.dp).fillMaxWidth()
+                        )
 
                         Column(modifier = Modifier.padding(top = 141.dp)) {
-                            CircularImage()
+                            CircularImage(it.largeImageLink)
                         }
                     }
-                    Spacer(modifier = Modifier.preferredHeight(40.dp))
+                    Spacer(modifier = Modifier.preferredHeight(32.dp))
 
                     MichelinStars(count = it.michelinRating)
-                    Spacer(modifier = Modifier.preferredHeight(24.dp))
+                    Spacer(modifier = Modifier.preferredHeight(16.dp))
 
                     Text(
                         text = it.name,
@@ -74,16 +75,21 @@ fun RestaurantDetailView(viewModel: RestaurantListViewModel, visitClicked: () ->
                         color = MaterialTheme.colors.textColor,
                         style = MaterialTheme.typography.body2
                     )
-                    Spacer(modifier = Modifier.preferredHeight(10.dp))
+                    Spacer(modifier = Modifier.preferredHeight(16.dp))
 
-                    RestaurantVisits(count = 19)
-                    Spacer(modifier = Modifier.preferredHeight(10.dp))
+                    // RestaurantVisits(count = 19)
+                    //Spacer(modifier = Modifier.preferredHeight(10.dp))
 
                     Button(backgroundColor = MaterialTheme.colors.secondary,
                         contentColor = MaterialTheme.colors.onSecondary,
                         modifier = Modifier.fillMaxWidth().preferredHeight(60.dp),
                         onClick = {
-                            Toast.makeText(context, "You just pushed a button", Toast.LENGTH_SHORT)
+                            viewModel.insertStars(it.id, it.michelinRating)
+                            Toast.makeText(
+                                context,
+                                "Your stars have been added",
+                                Toast.LENGTH_SHORT
+                            )
                                 .show()
                         }) {
                         Text(
@@ -102,8 +108,7 @@ fun RestaurantDetailView(viewModel: RestaurantListViewModel, visitClicked: () ->
                         contentColor = MaterialTheme.colors.onPrimary,
                         modifier = Modifier.fillMaxWidth().preferredHeight(60.dp),
                         onClick = {
-                            Toast.makeText(context, "You just pushed a button", Toast.LENGTH_SHORT)
-                                .show()
+
                         }) {
                         Text(
                             "Explore restaurants",

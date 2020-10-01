@@ -43,10 +43,6 @@ class Actions(navigator: Navigator<Destination>) {
         navigator.navigate(Destination.RestaurantDetail(restaurantId))
     }
 
-    val visitRestaurant: () -> Unit = {
-
-    }
-
     val browseRestaurants: () -> Unit = {
         navigator.navigate(Destination.RestaurantList)
     }

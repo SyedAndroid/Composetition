@@ -69,7 +69,7 @@ fun restaurantItem(restaurant: Restaurant, selectRestaurant: (Long) -> Unit) {
     ) {
         CoilImage(
             request = ImageRequest.Builder(ContextAmbient.current)
-                .data(restaurant.imageLink)
+                .data(restaurant.smallImageLink)
                 .transformations(CircleCropTransformation())
                 .build(),
             modifier = Modifier.preferredSize(48.dp)

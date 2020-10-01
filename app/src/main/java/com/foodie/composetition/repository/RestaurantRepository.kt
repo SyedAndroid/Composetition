@@ -19,6 +19,11 @@ class RestaurantRepository @Inject constructor(
 
     fun getRestaurant(id: Long) = restaurantDao.getRestaurant(id)
 
+    fun getStars() = restaurantDao.getRestaurantVisited()
+
+    suspend fun insertStars(starCounter: StarCounter) =
+        restaurantDao.insertRestaurantVisited(starCounter)
+
     private fun toRestaurant(restaurantResponse: RestaurantResponse): List<Restaurant> {
         val restaurants = ArrayList<Restaurant>()
         restaurantResponse.poiList.forEach {
@@ -33,7 +38,8 @@ class RestaurantRepository @Inject constructor(
                         address = response.address,
                         city = response.city,
                         michelinRating = response.michelinStars,
-                        imageLink = response.medias[0].url_s
+                        smallImageLink = response.medias[0].url_s,
+                        largeImageLink = response.medias[0].url_l
                     )
                 )
             }

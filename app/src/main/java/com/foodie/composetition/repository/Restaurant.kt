@@ -13,7 +13,8 @@ class Restaurant(
     val address: String,
     val city: String,
     val michelinRating: Int,
-    val imageLink: String
+    val smallImageLink: String,
+    val largeImageLink: String
 )
 
 
