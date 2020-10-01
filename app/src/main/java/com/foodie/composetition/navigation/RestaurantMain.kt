@@ -22,6 +22,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Providers
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
+import com.foodie.composetition.ui.HomeView
+import com.foodie.composetition.ui.RestaurantDetailView
 import com.foodie.composetition.ui.RestaurantListView
 import com.foodie.composetition.utils.ProvideDisplayInsets
 import com.foodie.composetition.viewmodels.RestaurantListViewModel
@@ -40,18 +42,14 @@ fun RestaurantMain(viewModel: RestaurantListViewModel, backDispatcher: OnBackPre
     ProvideDisplayInsets {
       Crossfade(navigator.current) { destination ->
         when (destination) {
-          Destination.Home -> RestaurantListView(
-            viewModel = viewModel,
-            selectRestaurant = actions.selectOnRestaurant
-          )
-        }
-         /* is Destination.RestaurantDetail -> {
-            viewModel.g(destination.restaurantId)
-            RestaurantDetails(
-              viewModel = viewModel,
-              pressOnBack = actions.pressOnBack
-            )
-          }*/
+          Destination.Home -> HomeView(goToRestaurantList = actions.browseRestaurants)
+
+           Destination.RestaurantList -> RestaurantListView(
+                                                       viewModel = viewModel,
+                                selectRestaurant = actions.selectOnRestaurant)
+
+        //  Destination.RestaurantDetail -> RestaurantDetailView(viewModel = viewModel, visitClicked = actions.visitRestaurant)
+          }
         }
       }
     }

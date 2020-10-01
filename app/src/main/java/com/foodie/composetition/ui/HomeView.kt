@@ -2,6 +2,7 @@ package com.foodie.composetition.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -22,7 +23,7 @@ import com.foodie.composetition.ui.theme.Theme
 import com.foodie.composetition.ui.theme.textColor
 
 @Composable
-fun HomeView() {
+fun HomeView(goToRestaurantList: () -> Unit) {
     val context = ContextAmbient.current
     Theme() {
         Surface(color = Color.White) {
@@ -65,10 +66,9 @@ fun HomeView() {
                     Button(backgroundColor = MaterialTheme.colors.primary,
                             contentColor =  MaterialTheme.colors.onPrimary,
                             modifier = Modifier.fillMaxWidth().preferredHeight(60.dp),
-                            onClick = {
-                        Toast.makeText(context, "You just pushed a button", Toast.LENGTH_SHORT)
-                            .show()
-                    }){
+                            onClick =
+                                goToRestaurantList
+                    ){
                         Text("Explore restaurants",
                             style = MaterialTheme.typography.button)
                     }
@@ -81,5 +81,5 @@ fun HomeView() {
 @Preview
 @Composable
 fun HomeViewPreview() {
-    HomeView()
+   // HomeView()
 }
