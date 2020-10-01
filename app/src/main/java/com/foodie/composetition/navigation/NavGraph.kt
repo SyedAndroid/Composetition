@@ -18,7 +18,6 @@ package com.foodie.composetition.navigation
 
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
-import com.foodie.composetition.repository.Restaurant
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -26,34 +25,34 @@ import kotlinx.android.parcel.Parcelize
  */
 sealed class Destination : Parcelable {
 
-  @Parcelize
-  object Home : Destination()
+    @Parcelize
+    object Home : Destination()
 
-  @Parcelize
-  object RestaurantList : Destination()
+    @Parcelize
+    object RestaurantList : Destination()
 
 
-  @Immutable
-  @Parcelize
-  data class RestaurantDetail(val restaurantId: Long) : Destination()
+    @Immutable
+    @Parcelize
+    data class RestaurantDetail(val restaurantId: Long) : Destination()
 }
 
 class Actions(navigator: Navigator<Destination>) {
 
-  val selectOnRestaurant: (Long) -> Unit = { restaurantId: Long ->
-    navigator.navigate(Destination.RestaurantDetail(restaurantId))
-  }
+    val selectOnRestaurant: (Long) -> Unit = { restaurantId: Long ->
+        navigator.navigate(Destination.RestaurantDetail(restaurantId))
+    }
 
-  val visitRestaurant: () -> Unit = {
+    val visitRestaurant: () -> Unit = {
 
-  }
+    }
 
-  val browseRestaurants: () -> Unit = {
-    navigator.navigate(Destination.RestaurantList)
-  }
+    val browseRestaurants: () -> Unit = {
+        navigator.navigate(Destination.RestaurantList)
+    }
 
 
-  val pressOnBack: () -> Unit = {
-    navigator.back()
-  }
+    val pressOnBack: () -> Unit = {
+        navigator.back()
+    }
 }

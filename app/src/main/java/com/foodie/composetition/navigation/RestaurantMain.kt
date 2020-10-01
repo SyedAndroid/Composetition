@@ -31,32 +31,35 @@ import com.foodie.composetition.viewmodels.RestaurantListViewModel
 
 @Composable
 fun RestaurantMain(viewModel: RestaurantListViewModel, backDispatcher: OnBackPressedDispatcher) {
-  val navigator: Navigator<Destination> = rememberSavedInstanceState(
-    saver = Navigator.saver(backDispatcher)
-  ) {
-    Navigator(Destination.Home, backDispatcher)
-  }
-  val actions = remember(navigator) { Actions(navigator) }
-
-  Providers(BackDispatcherAmbient provides backDispatcher) {
-    ProvideDisplayInsets {
-      Crossfade(navigator.current) { destination ->
-        when (destination) {
-          Destination.Home -> HomeView(goToRestaurantList = actions.browseRestaurants)
-
-           Destination.RestaurantList -> RestaurantListView(
-                                                       viewModel = viewModel,
-                                selectRestaurant = actions.selectOnRestaurant)
-
-          is Destination.RestaurantDetail -> {
-            viewModel.getRestaurant(destination.restaurantId)
-            RestaurantDetailView(viewModel = viewModel,
-              visitClicked = actions.visitRestaurant)
-            }
-          }
-          }
-        }
-      }
+    val navigator: Navigator<Destination> = rememberSavedInstanceState(
+        saver = Navigator.saver(backDispatcher)
+    ) {
+        Navigator(Destination.Home, backDispatcher)
     }
+    val actions = remember(navigator) { Actions(navigator) }
+
+    Providers(BackDispatcherAmbient provides backDispatcher) {
+        ProvideDisplayInsets {
+            Crossfade(navigator.current) { destination ->
+                when (destination) {
+                    Destination.Home -> HomeView(goToRestaurantList = actions.browseRestaurants)
+
+                    Destination.RestaurantList -> RestaurantListView(
+                        viewModel = viewModel,
+                        selectRestaurant = actions.selectOnRestaurant
+                    )
+
+                    is Destination.RestaurantDetail -> {
+                        viewModel.getRestaurant(destination.restaurantId)
+                        RestaurantDetailView(
+                            viewModel = viewModel,
+                            visitClicked = actions.visitRestaurant
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
 
 
