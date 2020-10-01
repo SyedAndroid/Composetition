@@ -25,10 +25,10 @@ import com.foodie.composetition.ui.composables.CircularImage
 import com.foodie.composetition.ui.composables.MichelinStars
 import com.foodie.composetition.ui.theme.textColor
 import com.foodie.composetition.ui.theme.titleTextColor
-import com.foodie.composetition.viewmodels.RestaurantListViewModel
+import com.foodie.composetition.viewmodels.RestaurantViewModel
 
 @Composable
-fun RestaurantDetailView(viewModel: RestaurantListViewModel) {
+fun RestaurantDetailView(viewModel: RestaurantViewModel) {
 
     val details: Restaurant? by viewModel.restaurantDetails.observeAsState()
 

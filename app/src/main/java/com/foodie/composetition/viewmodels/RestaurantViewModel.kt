@@ -11,7 +11,7 @@ import com.foodie.composetition.repository.RestaurantRepository
 import com.foodie.composetition.repository.StarCounter
 import kotlinx.coroutines.launch
 
-class RestaurantListViewModel @ViewModelInject constructor(
+class RestaurantViewModel @ViewModelInject constructor(
     private val repository: RestaurantRepository
 ) : ViewModel() {
 

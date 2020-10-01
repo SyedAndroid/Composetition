@@ -26,11 +26,11 @@ import com.foodie.composetition.ui.HomeView
 import com.foodie.composetition.ui.RestaurantDetailView
 import com.foodie.composetition.ui.RestaurantListView
 import com.foodie.composetition.utils.ProvideDisplayInsets
-import com.foodie.composetition.viewmodels.RestaurantListViewModel
+import com.foodie.composetition.viewmodels.RestaurantViewModel
 
 
 @Composable
-fun RestaurantMain(viewModel: RestaurantListViewModel, backDispatcher: OnBackPressedDispatcher) {
+fun RestaurantMain(viewModel: RestaurantViewModel, backDispatcher: OnBackPressedDispatcher) {
     val navigator: Navigator<Destination> = rememberSavedInstanceState(
         saver = Navigator.saver(backDispatcher)
     ) {

@@ -19,21 +19,21 @@ import com.foodie.composetition.ui.composables.MichelinStarRow
 import com.foodie.composetition.ui.composables.MichelinStarTotal
 import com.foodie.composetition.ui.theme.Theme
 import com.foodie.composetition.ui.theme.textColor
-import com.foodie.composetition.viewmodels.RestaurantListViewModel
+import com.foodie.composetition.viewmodels.RestaurantViewModel
 
 @Composable
 fun HomeView(
-    viewModel: RestaurantListViewModel,
+    viewModel: RestaurantViewModel,
     goToRestaurantList: () -> Unit
 ) {
     val context = ContextAmbient.current
-    val restaurantVisited: List<StarCounter>? by viewModel.restaurantsVisited.observeAsState()
-    restaurantVisited?.let {
+    val restaurantVisited: List<StarCounter> by viewModel.restaurantsVisited.observeAsState(listOf())
         var totalStars = 0
         var oneStarRestaurants = 0
         var twoStarRestaurants = 0
         var threeStarRestaurants = 0
-        it.forEach { restaurant ->
+
+        restaurantVisited.forEach { restaurant ->
             totalStars += restaurant.stars
             when (restaurant.stars) {
                 1 -> oneStarRestaurants++
@@ -60,7 +60,7 @@ fun HomeView(
                         )
                         Spacer(Modifier.preferredHeight(16.dp))
                         Text(
-                            "You have visited 11 Michelin star restaurants.",
+                            "You have visited ${restaurantVisited.size} Michelin star restaurants.",
                             color = Color(android.graphics.Color.parseColor("#2D2926")),
                             style = MaterialTheme.typography.body2
                         )
@@ -112,7 +112,7 @@ fun HomeView(
             }
         }
     }
-}
+
 
 @Preview
 @Composable

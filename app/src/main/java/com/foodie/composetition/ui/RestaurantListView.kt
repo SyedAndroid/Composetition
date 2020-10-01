@@ -15,16 +15,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import com.foodie.composetition.repository.Restaurant
 import com.foodie.composetition.utils.Resource
-import com.foodie.composetition.viewmodels.RestaurantListViewModel
+import com.foodie.composetition.viewmodels.RestaurantViewModel
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun RestaurantListView(
-    viewModel: RestaurantListViewModel,
+    viewModel: RestaurantViewModel,
     selectRestaurant: (Long) -> Unit
 ) {
     val restaurantsResource: Resource<List<Restaurant>> by viewModel.restaurantResponse.observeAsState(
@@ -44,8 +45,6 @@ fun RestaurantListView(
 
             }
         }
-
-
     }
 }
 
@@ -60,11 +59,11 @@ fun loadList(restaurants: List<Restaurant>, selectRestaurant: (Long) -> Unit) {
     }
 }
 
-
 @Composable
 fun restaurantItem(restaurant: Restaurant, selectRestaurant: (Long) -> Unit) {
     Row(
-        modifier = Modifier.padding(8.dp).fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().padding(8.dp)
+
             .clickable(onClick = { selectRestaurant(restaurant.id) })
     ) {
         CoilImage(
@@ -72,19 +71,19 @@ fun restaurantItem(restaurant: Restaurant, selectRestaurant: (Long) -> Unit) {
                 .data(restaurant.smallImageLink)
                 .transformations(CircleCropTransformation())
                 .build(),
-            modifier = Modifier.preferredSize(48.dp)
+            modifier = Modifier.preferredSize(64.dp)
                 .clip(MaterialTheme.shapes.medium)
-                .size(48.dp, 48.dp)
+                .size(64.dp, 64.dp)
         )
 
         Spacer(Modifier.preferredWidth(8.dp))
 
         Text(
             restaurant.name,
-            modifier = Modifier.padding(8.dp),
+            fontSize = 16.sp,
+            modifier = Modifier.padding(16.dp),
             textAlign = TextAlign.Center
         )
-
     }
 
 }
