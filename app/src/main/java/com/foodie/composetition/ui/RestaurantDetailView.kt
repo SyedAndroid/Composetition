@@ -1,6 +1,8 @@
 package com.foodie.composetition.ui
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
@@ -12,9 +14,12 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
+import com.foodie.composetition.R
 import com.foodie.composetition.repository.Restaurant
 import com.foodie.composetition.ui.composables.CircularImage
 import com.foodie.composetition.ui.composables.MichelinStars
@@ -32,14 +37,22 @@ fun RestaurantDetailView(viewModel : RestaurantListViewModel, visitClicked : () 
         val context = ContextAmbient.current
         details?.let {
         Surface(color = Color.White) {
-            Column(
+            ScrollableColumn(
                 modifier = Modifier.fillMaxHeight().fillMaxWidth()
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    CircularImage()
+                    Stack(alignment = Alignment.TopCenter) {
+                        Image(asset = imageResource(id = R.drawable.arzak_map),
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.height(288.dp).fillMaxWidth())
+
+                        Column(modifier = Modifier.padding(top = 141.dp)) {
+                            CircularImage()
+                        }
+                    }
                     Spacer(modifier = Modifier.preferredHeight(40.dp))
 
                     MichelinStars(count = it.michelinRating)
