@@ -4,11 +4,16 @@ import android.graphics.Color.parseColor
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope.gravity
+import androidx.compose.foundation.layout.Stack
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -21,14 +26,16 @@ import com.foodie.composetition.R
 
 @Composable
 fun CircularImage(){
-    Surface(elevation = 10.dp, modifier = Modifier.clip(shape = CircleShape)) {
+    Surface(color = MaterialTheme.colors.primaryVariant,
+            modifier = Modifier.width(296.dp)
+                                .height(296.dp)
+                                .clip(shape = CircleShape)
+    ) {
         Image(asset = imageResource(id = R.drawable.arzak_entrance),
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.width(288.dp).height(288.dp)
-                    .clip(shape = CircleShape)
-                    .border(width = 4.dp,
-                            color= Color(parseColor("#A42330"))))
-
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.width(288.dp)
+                .height(288.dp)
+                .clip(shape = CircleShape), alignment = Alignment.Center)
     }
 }
 
@@ -36,8 +43,5 @@ fun CircularImage(){
 @Preview
 @Composable
 fun CircularImagePreview(){
-    Surface(modifier = Modifier.width(300.dp).height(300.dp) ) {
         CircularImage()
-    }
-
 }
