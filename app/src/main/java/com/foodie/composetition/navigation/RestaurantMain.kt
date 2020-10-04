@@ -47,11 +47,13 @@ fun RestaurantMain(viewModel: RestaurantViewModel, backDispatcher: OnBackPressed
                         HomeView(viewModel, goToRestaurantList = actions.browseRestaurants)
                     }
 
-                    Destination.RestaurantList -> RestaurantListView(
-                        viewModel = viewModel,
-                        selectRestaurant = actions.selectOnRestaurant
-                    )
-
+                    Destination.RestaurantList -> {
+                        viewModel.getRestaurantList()
+                        RestaurantListView(
+                            viewModel = viewModel,
+                            selectRestaurant = actions.selectOnRestaurant
+                        )
+                    }
                     is Destination.RestaurantDetail -> {
                         viewModel.getRestaurant(destination.restaurantId)
                         RestaurantDetailView(

@@ -9,12 +9,12 @@ import androidx.lifecycle.viewModelScope
 import com.foodie.composetition.repository.Restaurant
 import com.foodie.composetition.repository.RestaurantRepository
 import com.foodie.composetition.repository.StarCounter
+import com.foodie.composetition.utils.Resource
 import kotlinx.coroutines.launch
 
 class RestaurantViewModel @ViewModelInject constructor(
     private val repository: RestaurantRepository
 ) : ViewModel() {
-
 
     private var _restaurantDetails: LiveData<Restaurant> = MutableLiveData()
     val restaurantDetails: LiveData<Restaurant> get() = _restaurantDetails
@@ -22,15 +22,14 @@ class RestaurantViewModel @ViewModelInject constructor(
     private var _starCount: LiveData<List<StarCounter>> = MutableLiveData()
     val restaurantsVisited: LiveData<List<StarCounter>> get() = _starCount
 
-    val restaurantsStars = repository.getStars()
+    private var _restaurantList: LiveData<Resource<List<Restaurant>>> = MutableLiveData()
+    val restaurantList: LiveData<Resource<List<Restaurant>>> get() = _restaurantList
 
     fun insertStars(restaurantId: Long, stars: Int) {
         viewModelScope.launch {
             repository.insertStars(StarCounter(restaurantId, stars = stars))
         }
     }
-
-    var restaurantResponse = repository.getRestaurants()
 
     @WorkerThread
     fun getRestaurant(id: Long) {
@@ -40,6 +39,12 @@ class RestaurantViewModel @ViewModelInject constructor(
     @WorkerThread
     fun getRestaurantVisited() {
         _starCount = repository.getStars()
+    }
+
+    fun getRestaurantList() {
+        viewModelScope.launch {
+            _restaurantList = repository.getRestaurants()
+        }
     }
 
 }

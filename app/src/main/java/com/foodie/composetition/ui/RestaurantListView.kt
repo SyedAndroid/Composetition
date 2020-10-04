@@ -28,7 +28,7 @@ fun RestaurantListView(
     viewModel: RestaurantViewModel,
     selectRestaurant: (Long) -> Unit
 ) {
-    val restaurantsResource: Resource<List<Restaurant>> by viewModel.restaurantResponse.observeAsState(
+    val restaurantsResource: Resource<List<Restaurant>> by viewModel.restaurantList.observeAsState(
         Resource(Resource.Status.LOADING, null, null)
     )
     Surface(
@@ -42,7 +42,10 @@ fun RestaurantListView(
                 }
             }
             Resource.Status.LOADING -> {
-
+                // TODO handle loading state
+            }
+            Resource.Status.ERROR -> {
+                //TODO handle error state
             }
         }
     }
@@ -63,7 +66,6 @@ fun loadList(restaurants: List<Restaurant>, selectRestaurant: (Long) -> Unit) {
 fun restaurantItem(restaurant: Restaurant, selectRestaurant: (Long) -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(8.dp)
-
             .clickable(onClick = { selectRestaurant(restaurant.id) })
     ) {
         CoilImage(
